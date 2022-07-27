@@ -34,6 +34,10 @@ namespace AuthenticationWithClie.UI
                 {
                     break;
                 }
+                else if(command == "/login")
+                {
+                    Authentication.Logout();
+                }
                 else
                 {
                     Console.WriteLine("Command not found!");

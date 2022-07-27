@@ -25,6 +25,7 @@ namespace AuthenticationWithClie.ApplicationLogic
             {
                 Authentication.Register();
             }
+            
             else if (command == "/update-user")
             {
                 Console.WriteLine("deyismek istediyiniz emaili daxil edin.");
