@@ -127,16 +127,18 @@ namespace AuthenticationWithClie.ApplicationLogic
 
             if (command == "/update-info")
             {
-                string updateEmail = Console.ReadLine();
-                User user1 = UserRepository.GetUserByEmail(updateEmail);
-                if (user1 is User)
+                //string updateEmail = Console.ReadLine();
+                //User user1 = UserRepository.GetUserByEmail(updateEmail);
+                Console.Write("Please enter your password : ");
+                string password = Console.ReadLine();
+                if (Authentication.Account.Password == password)
                 {
                     Console.WriteLine("yeni adi yazin.");
                     string newName = Console.ReadLine();
                     Console.WriteLine("yeni soyadi yazin.");
                     string newLastName = Console.ReadLine();
-                    user1.FirstName = newName;
-                    user1.LastName = newLastName;
+                    Authentication.Account.FirstName = newName;
+                    Authentication.Account.LastName = newLastName;
                 }
                 else
                 {
