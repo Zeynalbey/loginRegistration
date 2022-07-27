@@ -4,17 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AuthenticationWithClie.Database.Models;
 
 namespace AuthenticationWithClie.Database.Models
 {
-    public class User
+    class User
     {
         public int Id { get; private set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-
+        public List<Report> Reportinbox { get; set; } = new List<Report>();
         public User(string firstName, string lastName, string email, string password, int id)
         {
             FirstName = firstName;

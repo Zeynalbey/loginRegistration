@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace AuthenticationWithClie.ApplicationLogic
 {
-    public class Authentication
+    class Authentication
     {
-        protected static User Account { get; set; }
+        public static User Account { get; set; }
         protected static bool IsAuthorized { get; set; } = false;
 
         public static void Register()

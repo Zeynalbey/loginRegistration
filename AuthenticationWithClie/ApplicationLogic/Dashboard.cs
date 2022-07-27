@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AuthenticationWithClie.ApplicationLogic.Validations;
 
 namespace AuthenticationWithClie.ApplicationLogic
 {
@@ -64,7 +65,19 @@ namespace AuthenticationWithClie.ApplicationLogic
             }
             else if (command == "/reports")
             {
-
+                for (int i = 0; i < Authentication.Account.Reportinbox.Count; i++)
+                {
+                    Report report = Authentication.Account.Reportinbox[i];
+                    Console.WriteLine($"{i + 1}. (report ID : {report.Id}) User ({report.Sender.Email}) report {report.Target.Email} Date : {report.Sent}\n{report.Text}");
+                }
+            }
+            else if (command == "/all-reports")
+            {
+                for (int i = 0; i < UserRepository.Reports.Count; i++)
+                {
+                    Report report = UserRepository.Reports[i];
+                    Console.WriteLine($"{i + 1}. (report ID : {report.Id}) User ({report.Sender.Email}) report {report.Target.Email} Date : {report.Sent}\n{report.Text}");
+                }
             }
             else if (command == "/add-admin")
             {
@@ -111,7 +124,7 @@ namespace AuthenticationWithClie.ApplicationLogic
         {
             Console.WriteLine("/update-info" +" " + "/report-user");
             string command = Console.ReadLine();
-           
+
             if (command == "/update-info")
             {
                 string updateEmail = Console.ReadLine();
@@ -130,18 +143,30 @@ namespace AuthenticationWithClie.ApplicationLogic
                     Console.WriteLine("emaili duzgun daxil edin.");
                 }
             }
-            else if(command == "/report-user")
+            else if (command == "/report-user")
             {
-                //string fromUserEmail = Console.ReadLine();
-                //Report user1 = UserRepository.GetUserByEmail();
-
-                //string toUserEmail = Console.ReadLine();
-                //Report user2 = UserRepository.GetUserByEmail(toUserEmail);
-
-                //string content = Console.ReadLine();
-                //Report 
-
-                //Report report = new Report(user1,user2,);
+                Console.Write("Please enter target's email : ");
+                string email = Console.ReadLine();
+                Console.Write("Please enter reason of report : ");
+                string reason = Console.ReadLine();
+                if (email != Authentication.Account.Email && Validation.IsLengthBetween(reason, 10, 50) && UserRepository.IsUserExistsByEmail(email))
+                {
+                    User target = UserRepository.GetUserByEmail(email);
+                    UserRepository.AddReport(Authentication.Account, reason, target);
+                    Console.WriteLine("User Reported");
+                }
+                else
+                {
+                    Console.WriteLine("Rules : \n1. A User cannot report their own account \n2. The email entered must be valid \n3. The reason's length entered must be higher than 10 and less than 30 ");
+                }
+            }
+            else if (command == "/reports")
+            {
+                for (int i = 0; i < Authentication.Account.Reportinbox.Count; i++)
+                {
+                    Report report = Authentication.Account.Reportinbox[i];
+                    Console.WriteLine($"{i + 1}. (report ID : {report.Id}) User ({report.Sender.Email}) report {report.Target.Email} Date : {report.Sent}\n{report.Text}");
+                }
             }
             else
             {

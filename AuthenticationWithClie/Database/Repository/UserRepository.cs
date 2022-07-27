@@ -10,7 +10,7 @@ namespace AuthenticationWithClie.Database.Repository
     class UserRepository
     {
 
-        private static List<Report> Reports { get; set; } = new List<Report>();
+        public static List<Report> Reports { get; set; } = new List<Report>();
 
 
         private static int _idCounter;
@@ -175,7 +175,12 @@ namespace AuthenticationWithClie.Database.Repository
 
 
 
-
+        public static void AddReport(User sender, string reason, User target)
+        {
+            Report report = new Report(sender, reason, target);
+            Reports.Add(report);
+            target.Reportinbox.Add(report);   
+        }
 
     }
 }
