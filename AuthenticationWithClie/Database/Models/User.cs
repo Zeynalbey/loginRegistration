@@ -8,7 +8,7 @@ using AuthenticationWithClie.Database.Models;
 
 namespace AuthenticationWithClie.Database.Models
 {
-    class User
+    public class User
     {
         public int Id { get; private set; }
         public string FirstName { get; set; }

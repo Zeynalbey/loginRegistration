@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AuthenticationWithClie.Database.Models
 {
-    class Report
+    public class Report
     {
         private static int IdCounter = 1;
         public int Id { get; set; }

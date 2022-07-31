@@ -117,7 +117,6 @@ namespace AuthenticationWithClie.ApplicationLogic
             }
         }
     }
-
     public static partial class Dashboard
     {
         public static void UserPanel()
@@ -174,6 +173,7 @@ namespace AuthenticationWithClie.ApplicationLogic
             {
                 Console.WriteLine("Command not found");
             }
+
         }
     }
 }
